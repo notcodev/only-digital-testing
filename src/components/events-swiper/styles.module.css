@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+}
+
+.year {
+  font-family: var(--font-bebas);
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.slide-button-container {
+  width: 5rem;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

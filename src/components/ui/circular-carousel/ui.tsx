@@ -1,6 +1,7 @@
 import type { MotionValue } from 'framer-motion'
 import type { CSSProperties } from 'react'
 
+import { useControllableState } from '@radix-ui/react-use-controllable-state'
 import { clsx } from 'clsx'
 import {
   animate,
@@ -10,7 +11,6 @@ import {
 } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 
-import { useControllableState } from '@/hooks/use-controllable-state'
 import { useEvent } from '@/hooks/use-event'
 import {
   getTransitionClasses,
@@ -134,8 +134,8 @@ export interface CircularCarouselProps {
   defaultActive?: number
   height: number
   items: { id: number; label?: string }[]
+  offset?: number
   radius: number
-  shift?: number
   transitionDuration?: number
   width: number
   onActiveChange?: (index: number) => void
@@ -150,7 +150,7 @@ export const CircularCarousel = ({
   height,
   radius,
   transitionDuration = 600,
-  shift,
+  offset: shift,
   className,
 }: CircularCarouselProps) => {
   const cx = width / 2
@@ -168,25 +168,20 @@ export const CircularCarousel = ({
     (active: number, newActive: number) => {
       setActive(newActive)
 
-      // Handling wrapping around carousel
       if (
         Math.abs(newActive - active) > Math.floor(items.length / 2)
       ) {
-        angle.set(
-          -1 *
-            (active * ((2 * Math.PI) / items.length) +
-              Math.sign(newActive - active) * 2 * Math.PI),
-        )
+        const currentRadians = active * ((2 * Math.PI) / items.length)
+        const lapOffset = Math.sign(newActive - active) * 2 * Math.PI
+
+        angle.set((currentRadians + lapOffset) * -1)
       }
 
-      animate(
-        angle,
-        -1 * newActive * ((2 * Math.PI) / items.length),
-        {
-          duration: transitionDuration / 1000,
-          ease: 'easeInOut',
-        },
-      )
+      const newRadians = newActive * ((2 * Math.PI) / items.length)
+      animate(angle, newRadians * -1, {
+        duration: transitionDuration / 1000,
+        ease: 'easeInOut',
+      })
     },
   )
 
@@ -232,7 +227,7 @@ export const CircularCarousel = ({
   )
 }
 
-export function getShiftRadians(
+export function getOffsetRadians(
   itemsLength: number,
   shiftNumber: number,
 ): number {

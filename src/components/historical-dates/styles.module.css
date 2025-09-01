@@ -1,3 +1,7 @@
+.root {
+  padding-top: 4rem;
+}
+
 .carousel {
   top: 0;
   bottom: 0;
@@ -37,4 +41,27 @@
 
 .period-end-year {
   color: var(--brand-fuschia);
+}
+
+.period-controls {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 1.25rem;
+  margin-left: 5rem;
+}
+
+.current-period {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.period-buttons-container {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.events-swiper {
+    margin-top: 3.5rem;
 }

@@ -10,6 +10,8 @@
 .inner-container {
   border-inline: 1px solid hsla(from var(--foreground) h s l / 10%);
   flex: 1;
+  /* Look at https://github.com/nolimits4web/swiper/issues/3067 */
+  min-width: 0;
   position: relative;
 }
 

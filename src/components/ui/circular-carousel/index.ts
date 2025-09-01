@@ -1,5 +1,5 @@
 export {
   CircularCarousel,
   type CircularCarouselProps,
-  getShiftRadians,
+  getOffsetRadians,
 } from './ui'
