@@ -97,7 +97,7 @@ const webpackConfig = (env) => {
           'public',
           'index.html',
         ),
-        publicPath: '/',
+        publicPath: isDevelopment ? '/' : '/open-digital-testing/',
       }),
       new MiniCssExtractPlugin({
         filename: 'assets/[name]-[contenthash:8].css',
