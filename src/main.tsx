@@ -1,19 +1,10 @@
-import React, { Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import './global.css'
+import { Application } from './application'
 
-const LazyExample = React.lazy(() =>
-  import('./module').then(({ Example }) => ({ default: Example })),
-)
+import './styles/global.css'
 
-const App = () => (
-  <h1>
-    <Suspense>
-      <LazyExample />
-    </Suspense>
-  </h1>
-)
+const container = document.querySelector('#root')!
+const root = createRoot(container)
 
-const root = createRoot(document.getElementById('root'))
-root.render(<App />)
+root.render(<Application />)

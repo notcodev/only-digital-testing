@@ -36,7 +36,9 @@ const webpackConfig = (env) => {
         {
           test: /\.module\.css$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            isDevelopment
+              ? 'style-loader'
+              : MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
@@ -54,7 +56,12 @@ const webpackConfig = (env) => {
         {
           test: /\.css$/,
           exclude: /\.module\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          use: [
+            isDevelopment
+              ? 'style-loader'
+              : MiniCssExtractPlugin.loader,
+            'css-loader',
+          ],
         },
       ],
     },

@@ -1,0 +1,40 @@
+.carousel {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+}
+
+.period-container {
+  gap: 7.5rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.period-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  border-top: 1px solid hsla(from var(--foreground) h s l / 10%);
+}
+
+.period {
+  font-size: 12.5rem;
+  font-weight: 700;
+}
+
+.period-start-year {
+  color: var(--brand-iris);
+}
+
+.period-end-year {
+  color: var(--brand-fuschia);
+}

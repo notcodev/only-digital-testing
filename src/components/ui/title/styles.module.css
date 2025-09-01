@@ -1,0 +1,21 @@
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-left: 5rem;
+  position: relative;
+}
+
+.title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5rem;
+  width: 0.3125rem;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--brand-iris),
+    var(--brand-fuschia)
+  );
+  border-radius: 999px;
+}

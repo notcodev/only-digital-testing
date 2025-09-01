@@ -13,6 +13,7 @@
     "noImplicitAny": true,
     "noEmit": true,
     "outDir": "./dist/",
+    "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
     "plugins": [
       {

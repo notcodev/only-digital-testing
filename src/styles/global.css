@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: hsl(228, 29%, 97%);
+  --foreground: hsl(219, 30%, 37%);
+
+  --brand-iris: hsl(239, 82%, 65%);
+  --brand-fuschia: hsl(329, 82%, 65%);
+
+  --accent: hsl(219, 84%, 58%);
+
+  --font-sans: 'PT Sans', sans-serif;
+}
+
+html {
+  font-size: 16px;
+  font-family: var(--font-sans);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}

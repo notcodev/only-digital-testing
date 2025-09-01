@@ -1,0 +1,57 @@
+.carousel-item-circle {
+  r: 0.1875rem;
+  stroke-width: 0.0625rem;
+  stroke: var(--foreground);
+  color: var(--foreground);
+  transition:
+    r var(--transition-duration) ease,
+    color var(--transition-duration) ease,
+    stroke var(--transition-duration) ease;
+  will-change: r;
+}
+
+.carousel-item-number {
+  font-size: 1.25rem;
+  opacity: 0;
+  transition: opacity var(--transition-duration) ease;
+}
+
+.carousel-item-label {
+  translate: calc(1.75rem + 1.25rem) 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  transition: opacity var(--transition-duration) ease;
+}
+
+.carousel-item:not(.active) {
+  cursor: pointer;
+}
+
+.carousel-item-hover-helper {
+  r: 1rem;
+}
+
+.carousel-item.active .carousel-item-circle,
+.carousel-item:hover .carousel-item-circle {
+  color: var(--background);
+  stroke: hsla(from var(--foreground) h s l / 50%);
+  r: 1.75rem;
+}
+
+.carousel-item.active .carousel-item-number,
+.carousel-item:hover .carousel-item-number {
+  opacity: 1;
+}
+
+.carousel-item-label-in-transition {
+  opacity: 1;
+}
+
+.carousel-item-label-out-transition {
+  opacity: 0;
+}
+
+.carousel-circle {
+  stroke: hsla(from var(--foreground) h s l / 20%);
+  stroke-width: 0.0625rem;
+}
