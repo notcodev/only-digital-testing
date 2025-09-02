@@ -20,7 +20,6 @@
   translate: calc(1.75rem + 1.25rem) 0;
   font-size: 1.25rem;
   font-weight: 700;
-  transition: opacity var(--transition-duration) ease;
 }
 
 .carousel-item:not(.active) {
@@ -41,14 +40,6 @@
 .carousel-item.active .carousel-item-number,
 .carousel-item:hover .carousel-item-number {
   opacity: 1;
-}
-
-.carousel-item-label-in-transition {
-  opacity: 1;
-}
-
-.carousel-item-label-out-transition {
-  opacity: 0;
 }
 
 .carousel-circle {

@@ -4,10 +4,7 @@ import { useState } from 'react'
 
 import { EventsSwiper } from '../events-swiper'
 import { AnimatedNumber } from '../ui/animated-number'
-import {
-  CircularCarousel,
-  getOffsetRadians,
-} from '../ui/circular-carousel'
+import { CircularCarousel } from '../ui/circular-carousel'
 import { IconButton } from '../ui/icon-button'
 import { Title } from '../ui/title'
 
@@ -65,7 +62,7 @@ export const HistoricalDates = ({ data }: HistoricalDatesProps) => {
           items={data}
           radius={265}
           width={800}
-          offset={getOffsetRadians(data.length, -1)}
+          offset={-Math.PI / 3}
           onActiveChange={setActive}
         />
       </div>

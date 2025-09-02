@@ -1,5 +1,1 @@
-export {
-  CircularCarousel,
-  type CircularCarouselProps,
-  getOffsetRadians,
-} from './ui'
+export { CircularCarousel, type CircularCarouselProps } from './ui'

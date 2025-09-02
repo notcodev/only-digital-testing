@@ -32,7 +32,7 @@ export const EventsSwiper = ({
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null)
 
   return (
-    <AnimatePresence mode='wait'>
+    <AnimatePresence initial={false} mode='wait'>
       <motion.div
         key={animationKey}
         animate={{ opacity: 1 }}

@@ -5,6 +5,7 @@ import { useControllableState } from '@radix-ui/react-use-controllable-state'
 import { clsx } from 'clsx'
 import {
   animate,
+  AnimatePresence,
   motion,
   useMotionValue,
   useTransform,
@@ -12,50 +13,8 @@ import {
 import { useEffect, useRef } from 'react'
 
 import { useEvent } from '@/hooks/use-event'
-import {
-  getTransitionClasses,
-  useTransition,
-} from '@/hooks/use-transition'
 
 import styles from './styles.module.css'
-
-interface CarouselItemLabelProps {
-  content: string
-  mounted: boolean
-  transitionDuration: number
-}
-
-const CarouselItemLabel = ({
-  content,
-  mounted,
-  transitionDuration,
-}: CarouselItemLabelProps) => {
-  const { transitionStatus } = useTransition({
-    mounted,
-    duration: transitionDuration,
-    exitDuration: transitionDuration,
-    enterDelay: transitionDuration,
-  })
-
-  return transitionStatus !== 'exited' ? (
-    <text
-      className={clsx(
-        styles.carouselItemLabel,
-        getTransitionClasses({
-          state: transitionStatus,
-          transition: {
-            in: styles.carouselItemLabelInTransition,
-            out: styles.carouselItemLabelOutTransition,
-          },
-        }),
-      )}
-      fill='currentColor'
-      dominantBaseline='middle'
-    >
-      {content}
-    </text>
-  ) : null
-}
 
 interface CarouselItemProps {
   angle: MotionValue<number>
@@ -117,13 +76,26 @@ const CarouselItem = ({
       >
         {number}
       </text>
-      {label && (
-        <CarouselItemLabel
-          content={label}
-          mounted={isActive}
-          transitionDuration={transitionDuration}
-        />
-      )}
+      <AnimatePresence initial={false}>
+        {isActive && label && (
+          <motion.text
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: transitionDuration,
+                delay: transitionDuration,
+              },
+            }}
+            className={styles.carouselItemLabel}
+            exit={{ opacity: 0 }}
+            fill='currentColor'
+            initial={{ opacity: 0 }}
+            dominantBaseline='middle'
+          >
+            {label}
+          </motion.text>
+        )}
+      </AnimatePresence>
     </motion.g>
   )
 }
@@ -149,7 +121,7 @@ export const CircularCarousel = ({
   width,
   height,
   radius,
-  transitionDuration = 600,
+  transitionDuration = 0.6,
   offset: shift,
   className,
 }: CircularCarouselProps) => {
@@ -179,7 +151,7 @@ export const CircularCarousel = ({
 
       const newRadians = newActive * ((2 * Math.PI) / items.length)
       animate(angle, newRadians * -1, {
-        duration: transitionDuration / 1000,
+        duration: transitionDuration,
         ease: 'easeInOut',
       })
     },
@@ -194,7 +166,7 @@ export const CircularCarousel = ({
     <svg
       style={
         {
-          '--transition-duration': `${transitionDuration}ms`,
+          '--transition-duration': `${transitionDuration}s`,
         } as CSSProperties
       }
       className={className}
@@ -225,11 +197,4 @@ export const CircularCarousel = ({
       ))}
     </svg>
   )
-}
-
-export function getOffsetRadians(
-  itemsLength: number,
-  shiftNumber: number,
-): number {
-  return ((2 * Math.PI) / itemsLength) * shiftNumber
 }
