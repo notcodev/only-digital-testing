@@ -37,7 +37,7 @@ const CarouselItemLabel = ({
     enterDelay: transitionDuration,
   })
 
-  return (
+  return transitionStatus !== 'exited' ? (
     <text
       className={clsx(
         styles.carouselItemLabel,
@@ -54,7 +54,7 @@ const CarouselItemLabel = ({
     >
       {content}
     </text>
-  )
+  ) : null
 }
 
 interface CarouselItemProps {
@@ -174,7 +174,7 @@ export const CircularCarousel = ({
         const currentRadians = active * ((2 * Math.PI) / items.length)
         const lapOffset = Math.sign(newActive - active) * 2 * Math.PI
 
-        angle.set((currentRadians + lapOffset) * -1)
+        angle.set(currentRadians + lapOffset)
       }
 
       const newRadians = newActive * ((2 * Math.PI) / items.length)
