@@ -174,7 +174,7 @@ export const CircularCarousel = ({
         const currentRadians = active * ((2 * Math.PI) / items.length)
         const lapOffset = Math.sign(newActive - active) * 2 * Math.PI
 
-        angle.set(currentRadians + lapOffset)
+        angle.set((currentRadians + lapOffset) * -1)
       }
 
       const newRadians = newActive * ((2 * Math.PI) / items.length)
