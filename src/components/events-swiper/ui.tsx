@@ -8,7 +8,8 @@ import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { useForceUpdate } from '@/hooks/use-force-update'
-import { rem } from '@/lib/consts'
+import { useMediaQuery } from '@/hooks/use-media-query'
+import { breakpoints, rem } from '@/lib/consts'
 
 import { IconButton } from '../ui/icon-button'
 
@@ -28,6 +29,7 @@ export const EventsSwiper = ({
   animationKey,
   className,
 }: EventsSwiperProps) => {
+  const isMobile = useMediaQuery(`(max-width: ${breakpoints.lg})`)
   const forceUpdate = useForceUpdate()
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null)
 
@@ -41,7 +43,12 @@ export const EventsSwiper = ({
         initial={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className={styles.slideButtonContainer}>
+        <div
+          className={clsx(
+            styles.slideButtonContainer,
+            'visible-from-lg',
+          )}
+        >
           {!swiper?.isBeginning && (
             <IconButton onClick={() => swiper?.slidePrev()}>
               <ChevronLeftIcon />
@@ -49,21 +56,39 @@ export const EventsSwiper = ({
           )}
         </div>
         <Swiper
-          slidesPerView={3}
-          spaceBetween={5 * rem}
+          slidesPerView={isMobile ? 1.5 : 3}
+          spaceBetween={isMobile ? 3 * rem : 5 * rem}
           onSlideChange={forceUpdate}
           onSwiper={setSwiper}
         >
           {events.map((event, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide
+              key={index}
+              className={
+                isMobile
+                  ? clsx(
+                      styles.mobileSlide,
+                      isMobile &&
+                        swiper?.activeIndex === index &&
+                        styles.active,
+                    )
+                  : undefined
+              }
+            >
               <p className={styles.year}>{event.year}</p>
               <p className={styles.description}>
                 {event.description}
               </p>
             </SwiperSlide>
           ))}
+          c
         </Swiper>
-        <div className={styles.slideButtonContainer}>
+        <div
+          className={clsx(
+            styles.slideButtonContainer,
+            'visible-from-lg',
+          )}
+        >
           {!swiper?.isEnd && (
             <IconButton onClick={() => swiper?.slideNext()}>
               <ChevronRightIcon />

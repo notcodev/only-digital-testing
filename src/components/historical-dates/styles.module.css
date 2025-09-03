@@ -1,5 +1,11 @@
 .root {
   padding-top: 4rem;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 }
 
 .carousel {
@@ -17,6 +23,10 @@
   justify-content: center;
   margin-top: 3rem;
   position: relative;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    gap: 2rem;
+  }
 }
 
 .period-container::before {
@@ -28,11 +38,19 @@
   right: 0;
   z-index: -1;
   border-top: 1px solid hsla(from var(--foreground) h s l / 10%);
+
+  @media screen and (max-width: $breakpoint-lg) {
+    display: none;
+  }
 }
 
 .period {
   font-size: 12.5rem;
   font-weight: 700;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    font-size: 3.5rem;
+  }
 }
 
 .period-start-year {
@@ -45,23 +63,29 @@
 
 .period-controls {
   margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  gap: 1.25rem;
   margin-left: 5rem;
 }
 
-.current-period {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.period-buttons-container {
-  display: flex;
-  gap: 1.25rem;
-}
-
 .events-swiper {
-    margin-top: 3.5rem;
+  position: relative;
+  margin-top: 3.5rem;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    margin-top: 4.75rem;
+  }
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+  .events-swiper::before {
+    border-top: 1px solid hsla(from var(--foreground) h s l / 10%);
+    content: '';
+    position: absolute;
+    top: -1.25rem;
+    left: 0;
+    right: 0;
+  }
+}
+
+.period-dots-indicator {
+  margin: auto auto 1.25rem;
 }

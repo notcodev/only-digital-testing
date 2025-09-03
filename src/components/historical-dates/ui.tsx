@@ -1,19 +1,14 @@
 import { clsx } from 'clsx'
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
 
 import { EventsSwiper } from '../events-swiper'
+import { PeriodControls } from '../period-controls'
 import { AnimatedNumber } from '../ui/animated-number'
 import { CircularCarousel } from '../ui/circular-carousel'
-import { IconButton } from '../ui/icon-button'
+import { DotsIndicator } from '../ui/dots-indicator'
 import { Title } from '../ui/title'
 
 import styles from './styles.module.css'
-
-const numberFormatter = Intl.NumberFormat('ru-RU', {
-  style: 'decimal',
-  minimumIntegerDigits: 2,
-})
 
 export interface HistoricalDatesProps {
   data: {
@@ -57,7 +52,7 @@ export const HistoricalDates = ({ data }: HistoricalDatesProps) => {
         />
         <CircularCarousel
           active={active}
-          className={styles.carousel}
+          className={clsx(styles.carousel, 'visible-from-lg')}
           height={600}
           items={data}
           radius={265}
@@ -66,34 +61,23 @@ export const HistoricalDates = ({ data }: HistoricalDatesProps) => {
           onActiveChange={setActive}
         />
       </div>
-
-      <div className={styles.periodControls}>
-        <span className={styles.currentPeriod}>
-          {numberFormatter.format(active + 1)} /{' '}
-          {numberFormatter.format(data.length)}
-        </span>
-        <div className={styles.periodButtonsContainer}>
-          <IconButton
-            size='large'
-            variant='outlined'
-            onClick={() => move(-1)}
-          >
-            <ChevronLeftIcon />
-          </IconButton>
-          <IconButton
-            size='large'
-            variant='outlined'
-            onClick={() => move(1)}
-          >
-            <ChevronRightIcon />
-          </IconButton>
-        </div>
-      </div>
-
+      <PeriodControls
+        className={clsx(styles.periodControls, 'visible-from-lg')}
+        current={active}
+        onClickNext={() => move(1)}
+        onClickPrev={() => move(-1)}
+        total={data.length}
+      />
       <EventsSwiper
         className={styles.eventsSwiper}
         events={events}
         animationKey={active}
+      />
+      <DotsIndicator
+        activeIndex={active}
+        className={clsx('hidden-from-lg', styles.periodDotsIndicator)}
+        count={data.length}
+        onChange={setActive}
       />
     </section>
   )

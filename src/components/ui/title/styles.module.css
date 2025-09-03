@@ -3,6 +3,11 @@
   font-weight: 700;
   margin-left: 5rem;
   position: relative;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    font-size: 1.25rem;
+    margin-left: 0;
+  }
 }
 
 .title::before {
@@ -18,4 +23,8 @@
     var(--brand-fuschia)
   );
   border-radius: 999px;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    display: none;
+  }
 }

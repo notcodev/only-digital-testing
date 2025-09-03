@@ -13,6 +13,10 @@
   /* Look at https://github.com/nolimits4web/swiper/issues/3067 */
   min-width: 0;
   position: relative;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    border: none;
+  }
 }
 
 .inner-container::before {
@@ -24,33 +28,37 @@
   margin-inline: auto;
   height: 100%;
   width: 0;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    display: none;
+  }
 }
 
-@media screen and (max-width: 96rem) {
+@media screen and (max-width: $breakpoint-xl) {
   .container {
     max-width: 80rem;
   }
 }
 
-@media screen and (max-width: 80rem) {
+@media screen and (max-width: $breakpoint-lg) {
   .container {
     max-width: 64rem;
   }
 }
 
-@media screen and (max-width: 64rem) {
+@media screen and (max-width: $breakpoint-md) {
   .container {
     max-width: 48rem;
   }
 }
 
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: $breakpoint-sm) {
   .container {
     max-width: 40rem;
   }
 }
 
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: $breakpoint-xs) {
   .container {
     max-width: 100%;
   }

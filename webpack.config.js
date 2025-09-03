@@ -51,6 +51,7 @@ const webpackConfig = (env) => {
                 importLoaders: 1,
               },
             },
+            'postcss-loader',
           ],
         },
         {
@@ -61,6 +62,7 @@ const webpackConfig = (env) => {
               ? 'style-loader'
               : MiniCssExtractPlugin.loader,
             'css-loader',
+            'postcss-loader',
           ],
         },
       ],
@@ -86,6 +88,7 @@ const webpackConfig = (env) => {
       static: {
         directory: path.join(import.meta.dirname, 'public'),
       },
+      hot: true,
       port: 3000,
       compress: true,
     },
@@ -103,7 +106,6 @@ const webpackConfig = (env) => {
         filename: 'assets/[name]-[contenthash:8].css',
         chunkFilename: 'assets/[name]-[contenthash:8].css',
       }),
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.ProvidePlugin({
         React: 'react',
       }),
