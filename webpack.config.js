@@ -1,3 +1,4 @@
+import CopyPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'node:path'
@@ -96,11 +97,7 @@ const webpackConfig = (env) => {
     plugins: [
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: path.join(
-          import.meta.dirname,
-          'public',
-          'index.html',
-        ),
+        template: path.join(import.meta.dirname, 'index.html'),
         publicPath: isDevelopment ? '/' : '/open-digital-testing/',
       }),
       new MiniCssExtractPlugin({
@@ -109,6 +106,15 @@ const webpackConfig = (env) => {
       }),
       new webpack.ProvidePlugin({
         React: 'react',
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.resolve(import.meta.dirname, 'public'), // Source directory (e.g., 'public')
+            to: path.resolve(import.meta.dirname, 'dist'), // Destination directory (e.g., 'dist')
+            noErrorOnMissing: true, // Optional: Prevents errors if the 'from' directory is empty
+          },
+        ],
       }),
     ],
   }
