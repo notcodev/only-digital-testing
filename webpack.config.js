@@ -12,6 +12,7 @@ const webpackConfig = (env) => {
   const isDevelopment = env.NODE_ENV !== 'production'
 
   return {
+    target: 'web',
     mode: isDevelopment ? 'development' : 'production',
     entry: path.join(import.meta.dirname, 'src', 'main.tsx'),
     output: {

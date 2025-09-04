@@ -3,6 +3,7 @@
  */
 const postcssConfig = {
   plugins: {
+    autoprefixer: {},
     'postcss-simple-vars': {
       variables: {
         'breakpoint-xs': '40em',
