@@ -98,7 +98,7 @@ const webpackConfig = (env) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: path.join(import.meta.dirname, 'index.html'),
-        publicPath: isDevelopment ? '/' : '/open-digital-testing/',
+        publicPath: isDevelopment ? '/' : '/only-digital-testing/',
       }),
       new MiniCssExtractPlugin({
         filename: 'assets/[name]-[contenthash:8].css',

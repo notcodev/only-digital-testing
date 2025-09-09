@@ -18,7 +18,7 @@
 
 ### Демо
 
-Данное решение было загружено на GitHub Pages и доступно [здесь](https://notcodev.github.io/open-digital-testing)
+Данное решение было загружено на GitHub Pages и доступно [здесь](https://notcodev.github.io/only-digital-testing)
 
 ### Используемые технологии
 
